@@ -6,6 +6,8 @@
 #include <algorithm>
 #include <cmath>
 
+#define _FILE_OFFSET_BITS 64
+
 int leafsize;
 using namespace std;
 
@@ -208,7 +210,7 @@ void subtracao(vector< vector<int> > &A,
 /**
 * Função para pegar as matrizes a partir do arquivo
 */
-int getMatrixSize(string nomeArquivo) {
+int getTamanhoMatriz(string nomeArquivo) {
     string linha;
     ifstream infile;
     infile.open (nomeArquivo.c_str());
@@ -274,7 +276,7 @@ int main(int argc, char* argv[])
 string nomeArquivo;
 
     if (argc < 3) {
-            nomeArquivo = "4096.in";
+            nomeArquivo = "1000.in";
     } else {
         nomeArquivo = argv[2];
     }
@@ -285,7 +287,7 @@ string nomeArquivo;
         leafsize = atoi(argv[4]);
     }
 
-    int n = getMatrixSize(nomeArquivo);
+    int n = getTamanhoMatriz(nomeArquivo);
     vector<int> valor (n);
     vector< vector<int> > A(n, valor), B(n, valor), C(n, valor);
     lerMatrizes(nomeArquivo, A, B);
