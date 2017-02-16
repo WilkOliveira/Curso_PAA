@@ -9,6 +9,7 @@
 #define _FILE_OFFSET_BITS 64
 
 int leafsize;
+
 using namespace std;
 
 #define MAX 3 // para fazer testes
@@ -213,7 +214,7 @@ void subtracao(vector< vector<int> > &A,
 int getTamanhoMatriz(string nomeArquivo) {
     string linha;
     ifstream infile;
-    infile.open (nomeArquivo.c_str());
+    infile.open(nomeArquivo.c_str());
     getline(infile, linha);
     return count(linha.begin(), linha.end(), '\t') + 1;
 }
@@ -222,10 +223,11 @@ int getTamanhoMatriz(string nomeArquivo) {
 * Implementação da função que faz a leitura do arquivo
 */
 void lerMatrizes(string nomeArquivo, vector< vector<int> > &A, vector< vector<int> > &B) {
+    int BUF_SIZE = 40000;
     string linha;
-    FILE* matrixfile = freopen(nomeArquivo.c_str(), "r", stdin);
+    FILE* arquivo = freopen(nomeArquivo.c_str(), "r", stdin);
 
-    if (matrixfile == 0) {
+    if (arquivo == 0) {
         cerr << "Erro ao ler o arquivo " << nomeArquivo << endl;
         return;
     }
@@ -252,7 +254,7 @@ void lerMatrizes(string nomeArquivo, vector< vector<int> > &A, vector< vector<in
         i++;
     }
 
-    fclose (matrixfile);
+    fclose (arquivo);
 }
 
 /**
