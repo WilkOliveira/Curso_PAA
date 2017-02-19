@@ -11,20 +11,20 @@ using namespace std;
 
 int tam = MAX;
 
-int * insertionSort(int array[], int tam) {
+int * insertionSort(int a[], int tam) {
 
     for(int i=1; i < tam; i++) {
-		int chave = array[i];
+		int chave = a[i];
 		int j = i - 1;
-		while((j >= 0) && (array[j] > chave)) {
-			array[j + 1] = array[j];
+		while((j >= 0) && (a[j] > chave)) {
+			a[j + 1] = a[j];
 			j--;
 		}
-		array[j + 1] = chave;
+		a[j + 1] = chave;
 	}
 
 	for(int k=0; k<tam; k++){
-        printf("%d", array[k]);
+        printf("%d", a[k]);
 	}
 
 }
@@ -32,8 +32,8 @@ int * insertionSort(int array[], int tam) {
 int main()
 {
 
-    int array[tam] = {2, 6, 3, 7, 5, 9, 6, 3, 1, 3};
-    insertionSort(array, tam);
+    int a[tam] = {2, 6, 3, 7, 5, 9, 6, 3, 1, 3};
+    insertionSort(a, tam);
 
     return 0;
 }
