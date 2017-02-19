@@ -13,7 +13,7 @@ int main()
 
     while (i<TAM/2){
         arrayEsquerdo[j]= array[i];
-        printf("%d",arrayEsquerdo[j]);
+        printf("%d ",arrayEsquerdo[j]);
         i++;
         j++;
     }
@@ -22,7 +22,7 @@ int main()
 
     while (k<TAM){
         arrayDireito[l]= array[k];
-        printf("%d",arrayDireito[l]);
+        printf("%d ",arrayDireito[l]);
         k++;
         l++;
     }

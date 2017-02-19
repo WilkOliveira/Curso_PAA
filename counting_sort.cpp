@@ -1,3 +1,7 @@
+/**
+* O(n)
+*/
+
 #include<iostream>
 #include<fstream>
 
