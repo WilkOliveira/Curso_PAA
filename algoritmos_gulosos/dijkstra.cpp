@@ -25,7 +25,7 @@ public:
 		this->vertices = vertices; // atribui o número de vértices
 
 		/**
-			Cria as listas, onde cada lista é uma lista de pairs e cada pair é formado pelo vértice destino e o custo
+		*	Cria as listas, onde cada lista é uma lista de pairs e cada pair é formado pelo vértice destino e o custo
 		*/
 		adj = new list<pair<int, int> >[vertices];
 	}
@@ -41,49 +41,54 @@ public:
 	/**
 	* Implementa o algoritmos de Dijkstra de acordo com os slides
 	*/
-	int dijkstra(int orig, int dest)
+	int dijkstra(int origem, int destino)
 	{
 
-		int dist[vertices]; // vetor de distâncias
+		int distancia[vertices]; // vetor de distâncias
 
 		/**
         * Vetor de visitados, impede que um vertice visitado seja visitado novamente (guloso)
 		*/
 		int visitados[vertices];
 
-		// fila de prioridades de pair (distancia, vértice)
+		/**
+		* Define a fila de prioridades (distancia, vértice)
+		*/
 		priority_queue < pair<int, int>,
 					   vector<pair<int, int> >, greater<pair<int, int> > > pq;
 
-		// inicia o vetor de distâncias e visitados
+		/**
+		* Inicia o vetor de distâncias e vertices visitadas
+		*/
 		for(int i = 0; i < vertices; i++)
 		{
-			dist[i] = INFINITO;
+			distancia[i] = INFINITO;
 			visitados[i] = false;
 		}
 
-		// a distância de orig para orig é 0
-		dist[orig] = 0;
 
-		// insere na fila
-		pq.push(make_pair(dist[orig], orig));
+		distancia[origem] = 0; // a distância de origem para origem é 0
 
-		// loop do algoritmo
+		pq.push(make_pair(distancia[origem], origem)); // insere na fila
+
 		while(!pq.empty())
 		{
 			pair<int, int> p = pq.top(); // extrai o pair do topo
 			int u = p.second; // obtém o vértice do pair
 			pq.pop(); // remove da fila
 
-			// verifica se o vértice não foi expandido
+			/**
+			* Verifica se o vértice não foi expandido
+			*/
 			if(visitados[u] == false)
 			{
-				// marca como visitado
-				visitados[u] = true;
+				visitados[u] = true; // marca como visitado
 
 				list<pair<int, int> >::iterator it;
 
-				// percorre os vértices "v" adjacentes de "u"
+				/**
+				* Percorre os vértices "v" adjacentes de "u"
+				*/
 				for(it = adj[u].begin(); it != adj[u].end(); it++)
 				{
 					// obtém o vértice adjacente e o custo da aresta
@@ -91,18 +96,17 @@ public:
 					int custo_aresta = it->second;
 
 					// relaxamento (u, v)
-					if(dist[v] > (dist[u] + custo_aresta))
+					if(distancia[v] > (distancia[u] + custo_aresta))
 					{
 						// atualiza a distância de "v" e insere na fila
-						dist[v] = dist[u] + custo_aresta;
-						pq.push(make_pair(dist[v], v));
+						distancia[v] = distancia[u] + custo_aresta;
+						pq.push(make_pair(distancia[v], v));
 					}
 				}
 			}
 		}
 
-		// retorna a distância mínima até o destino
-		return dist[dest];
+    return distancia[destino];
 	}
 };
 
