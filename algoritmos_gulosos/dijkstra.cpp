@@ -13,7 +13,7 @@ class Grafo
 private:
 	int vertices; // número de vértices
 
-	list<pair<int, int> > * adj; // ponteiro para um array que representa as listas de adjacências
+	list<pair<int, int> > * adjacente; // ponteiro para um array que representa as listas de adjacências
 
 public:
 
@@ -27,7 +27,7 @@ public:
 		/**
 			Cria as listas, onde cada lista é uma lista de pairs e cada pair é formado pelo vértice destino e o custo
 		*/
-		adj = new list<pair<int, int> >[vertices];
+		adjacente = new list<pair<int, int> >[vertices];
 	}
 
 	/**
@@ -35,7 +35,7 @@ public:
 	*/
 	void adicionaAresta(int v1, int v2, int custo)
 	{
-		adj[v1].push_back(make_pair(v2, custo));
+		adjacente[v1].push_back(make_pair(v2, custo));
 	}
 
 	/**
@@ -62,8 +62,7 @@ public:
 			visitados[i] = false;
 		}
 
-		// a distância de orig para orig é 0
-		dist[orig] = 0;
+		dist[orig] = 0; // a distância de orig para orig é 0
 
 		// insere na fila
 		pq.push(make_pair(dist[orig], orig));
@@ -83,8 +82,10 @@ public:
 
 				list<pair<int, int> >::iterator it;
 
-				// percorre os vértices "v" adjacentes de "u"
-				for(it = adj[u].begin(); it != adj[u].end(); it++)
+				/**
+				* Percorre os vértices "v" adjacentes de "u"
+				*/
+				for(it = adjacente[u].begin(); it != adjacente[u].end(); it++)
 				{
 					// obtém o vértice adjacente e o custo da aresta
 					int v = it->first;
@@ -110,7 +111,7 @@ int main(int argc, char *argv[])
 {
 	Grafo g(5);
 
-	g.adicionaAresta(0, 1, 4);
+	g.adicionaAresta(0, 1, 4); // vertice 1, vertice 2, custo
 	g.adicionaAresta(0, 2, 2);
 	g.adicionaAresta(0, 3, 5);
 	g.adicionaAresta(1, 4, 1);
@@ -119,7 +120,7 @@ int main(int argc, char *argv[])
 	g.adicionaAresta(2, 4, 1);
 	g.adicionaAresta(3, 4, 1);
 
-	cout << g.dijkstra(0, 4) << endl;
+	cout << g.dijkstra(0, 4) << endl; // origem, destino
 
 	return 0;
 }
