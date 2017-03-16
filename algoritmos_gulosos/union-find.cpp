@@ -1,5 +1,3 @@
-// Union-find para detecção de ciclos em grafos não direcionados
-
 #include <iostream>
 #include <string.h>
 #include <stdlib.h>
