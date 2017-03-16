@@ -10,6 +10,7 @@ using namespace std;
 */
 class Grafo
 {
+
 private:
 	int vertices; // número de vértices
 
@@ -25,7 +26,7 @@ public:
 		this->vertices = vertices; // atribui o número de vértices
 
 		/**
-		*	Cria as listas, onde cada lista é uma lista de pairs e cada pair é formado pelo vértice destino e o custo
+		* Cria as listas, onde cada lista é uma lista de pairs e cada pair é formado pelo vértice destino e o custo
 		*/
 		adjacente = new list<pair<int, int> >[vertices];
 	}
@@ -88,7 +89,6 @@ public:
 				/**
 				* Percorre os vértices "v" adjacentes de "u"
 				*/
-
 				for(it = adjacente[u].begin(); it != adjacente[u].end(); it++)
 				{
 					// obtém o vértice adjacente e o custo da aresta
