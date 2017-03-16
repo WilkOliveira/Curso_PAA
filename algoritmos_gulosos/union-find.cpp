@@ -33,8 +33,7 @@ int identificaCiclo(int grafo[3][3])
 {
 	int * subset = (int*)malloc(3 * sizeof(int)); // malloc do c
 
-	// inicializa todos os subconjuntos como conjuntos de um único elemento
-	memset(subset, -1, sizeof(int) * 3);
+	memset(subset, -1, sizeof(int) * 3); // inicializa todos os subconjuntos como conjuntos de um único elemento
 
 	for(int i = 0; i < 3; i++)
 	{
