@@ -66,11 +66,6 @@ public:
 			visitados[i] = false;
 		}
 
-<<<<<<< HEAD
-		dist[orig] = 0; // a distância de orig para orig é 0
-=======
->>>>>>> origin/master
-
 		distancia[origem] = 0; // a distância de origem para origem é 0
 
 		pq.push(make_pair(distancia[origem], origem)); // insere na fila
@@ -93,11 +88,8 @@ public:
 				/**
 				* Percorre os vértices "v" adjacentes de "u"
 				*/
-<<<<<<< HEAD
+
 				for(it = adjacente[u].begin(); it != adjacente[u].end(); it++)
-=======
-				for(it = adj[u].begin(); it != adj[u].end(); it++)
->>>>>>> origin/master
 				{
 					// obtém o vértice adjacente e o custo da aresta
 					int v = it->first;
