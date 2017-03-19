@@ -113,6 +113,9 @@ public:
 
 		memset(subset, -1, sizeof(int) * V); // inicializa todos os subconjuntos como conjuntos de um único elemento
 
+		/**
+		* Loop para obter os vertices e os pesos entre eles
+		*/
 		for(int i = 0; i < size_arestas; i++)
 		{
 			int v1 = busca(subset, arestas[i].obtemVertice1());
