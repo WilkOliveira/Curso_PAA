@@ -123,15 +123,16 @@ public:
 
 			if(v1 != v2)
 			{
-				// se forem diferentes é porque NÃO forma ciclo, insere no vetor
-				arvore.push_back(arestas[i]);
+				arvore.push_back(arestas[i]); // se forem diferentes é porque NÃO forma ciclo, então, insere no vetor
 				unir(subset, v1, v2); // faz a união
 			}
 		}
 
 		int size_arvore = arvore.size();
 
-		// mostra as arestas selecionadas com seus respectivos pesos
+		/**
+		* Loop para mostrar as arestas selecionadas com seus respectivos pesos
+		*/
 		for(int i = 0; i < size_arvore; i++)
 		{
 			char v1 = 'A' + arvore[i].obtemVertice1();
@@ -143,10 +144,10 @@ public:
 
 int main(int argc, char *argv[])
 {
-	Grafo g(7); // grafo
+	Grafo g(7); // inicializa o grafo
 
 	// adiciona as arestas
-	g.adicionaAresta(0, 1, 7);
+	g.adicionaAresta(0, 1, 7); // vertice 1, vertice 2, peso
 	g.adicionaAresta(0, 3, 5);
 	g.adicionaAresta(1, 2, 8);
 	g.adicionaAresta(1, 3, 9);
