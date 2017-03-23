@@ -11,9 +11,15 @@ class Aresta
 
 public:
 
+<<<<<<< HEAD
     /**
     * Monta a aresta com seus vertices e pesos de um determinado vertice a outro
     */
+=======
+	/**
+	* Adiciona as arestas
+	*/
+>>>>>>> origin/master
 	Aresta(int v1, int v2, int peso)
 	{
 		vertice1 = v1; // pega "localmente"
@@ -22,23 +28,41 @@ public:
 	}
 
 	/**
+<<<<<<< HEAD
 	* Função para retornar o vertice 1
 	*/
 	int obterVertice1()
+=======
+	* Obtem o primeiro vertice (é apagado cada nova iteração)
+	*/
+	int obtemVertice1()
+>>>>>>> origin/master
 	{
 		return vertice1;
 	}
 
+<<<<<<< HEAD
     /**
 	* Função para retornar o vertice 2
 	*/
 	int obterVertice2()
+=======
+	/**
+	* Obtem o segundo vertice (é apagado cada nova iteração)
+	*/
+	int obtemVertice2()
+>>>>>>> origin/master
 	{
 		return vertice2;
 	}
 
+<<<<<<< HEAD
     /**
 	* Função para retornar o peso de cada
+=======
+	/**
+	* Obtem o peso da aresta que liga um vertice a outro
+>>>>>>> origin/master
 	*/
 	int obterPeso()
 	{
@@ -46,7 +70,11 @@ public:
 	}
 
 	/**
+<<<<<<< HEAD
 	* Sobrescrita do operador "<" para ordenar "futuramente" da menor para a maior aresta
+=======
+	* Operação para sobrescrita do operador "<", que será sada para ordenar as arestas em ordem cescente
+>>>>>>> origin/master
 	*/
 	bool operator < (const Aresta& aresta2) const
 	{
@@ -67,7 +95,11 @@ public:
 	}
 
 	/**
+<<<<<<< HEAD
 	* Função que adiciona uma aresta
+=======
+	* Função para adicionar arestas
+>>>>>>> origin/master
 	*/
 	void adicionaAresta(int v1, int v2, int peso)
 	{
@@ -75,57 +107,68 @@ public:
 		arestas.push_back(aresta);
 	}
 
-	// função que busca o subconjunto de um elemento "i"
-	int buscar(int subset[], int i)
+    // inicio da plimentação do union-find
+
+	/**
+	* Função recursiva que busca o subconjunto de um determnado elemento "i" do grafo
+    * Enquanto houver vertices, percorre uma aresta ligada a um novo vertice
+	*/
+	int busca(int subset[], int i)
 	{
 		if(subset[i] == -1)
 			return i;
-		return buscar(subset, subset[i]);
+		return busca(subset, subset[i]);
 	}
 
-	// função para unir dois subconjuntos em um único subconjunto
+	/**
+    * Função para unir dois subconjuntos em um único conjunto
+    * Usa a função busca para identificar os subconjuntos de cada vertice e em seguida os une
+    */
 	void unir(int subset[], int v1, int v2)
 	{
-		int v1_set = buscar(subset, v1);
-		int v2_set = buscar(subset, v2);
+		int v1_set = busca(subset, v1);
+		int v2_set = busca(subset, v2);
 		subset[v1_set] = v2_set;
 	}
 
-	/// função que roda o algoritmo de Kruskal
+	/**
+	* Implementação do algoritmo de Kruskal de acordo com os slides
+	*/
 	void kruskal()
 	{
 		vector<Aresta> arvore;
 		int size_arestas = arestas.size();
 
-		// ordena as arestas pelo menor peso
-		sort(arestas.begin(), arestas.end());
+		sort(arestas.begin(), arestas.end()); // ordena as arestas pelo menor peso
 
-		// aloca memória para criar "V" subconjuntos
-		int * subset = new int[V];
+		int * subset = new int[V]; // aloca memória para criar "V" subconjuntos (subconjunto de vertices)
 
-		// inicializa todos os subconjuntos como conjuntos de um único elemento
-		memset(subset, -1, sizeof(int) * V);
+		memset(subset, -1, sizeof(int) * V); // inicializa todos os subconjuntos como conjuntos de um único elemento
 
+		/**
+		* Loop para obter os vertices e os pesos entre eles
+		*/
 		for(int i = 0; i < size_arestas; i++)
 		{
-			int v1 = buscar(subset, arestas[i].obterVertice1());
-			int v2 = buscar(subset, arestas[i].obterVertice2());
+			int v1 = busca(subset, arestas[i].obtemVertice1());
+			int v2 = busca(subset, arestas[i].obtemVertice2());
 
 			if(v1 != v2)
 			{
-				// se forem diferentes é porque NÃO forma ciclo, insere no vetor
-				arvore.push_back(arestas[i]);
+				arvore.push_back(arestas[i]); // se forem diferentes é porque NÃO forma ciclo, então, insere no vetor
 				unir(subset, v1, v2); // faz a união
 			}
 		}
 
 		int size_arvore = arvore.size();
 
-		// mostra as arestas selecionadas com seus respectivos pesos
+		/**
+		* Loop para mostrar as arestas selecionadas com seus respectivos pesos
+		*/
 		for(int i = 0; i < size_arvore; i++)
 		{
-			char v1 = 'A' + arvore[i].obterVertice1();
-			char v2 = 'A' + arvore[i].obterVertice2();
+			char v1 = 'A' + arvore[i].obtemVertice1();
+			char v2 = 'A' + arvore[i].obtemVertice2();
 			cout << "(" << v1 << ", " << v2 << ") = " << arvore[i].obterPeso() << endl;
 		}
 	}
@@ -133,10 +176,14 @@ public:
 
 int main(int argc, char *argv[])
 {
-	Grafo g(7); // grafo
+	Grafo g(7); // inicializa o grafo
 
 	// adiciona as arestas
+<<<<<<< HEAD
 	g.adicionaAresta(0, 1, 7);
+=======
+	g.adicionaAresta(0, 1, 7); // vertice 1, vertice 2, peso
+>>>>>>> origin/master
 	g.adicionaAresta(0, 3, 5);
 	g.adicionaAresta(1, 2, 8);
 	g.adicionaAresta(1, 3, 9);
