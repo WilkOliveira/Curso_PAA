@@ -11,15 +11,9 @@ class Aresta
 
 public:
 
-<<<<<<< HEAD
     /**
     * Monta a aresta com seus vertices e pesos de um determinado vertice a outro
     */
-=======
-	/**
-	* Adiciona as arestas
-	*/
->>>>>>> origin/master
 	Aresta(int v1, int v2, int peso)
 	{
 		vertice1 = v1; // pega "localmente"
@@ -28,41 +22,24 @@ public:
 	}
 
 	/**
-<<<<<<< HEAD
-	* Função para retornar o vertice 1
-	*/
-	int obterVertice1()
-=======
 	* Obtem o primeiro vertice (é apagado cada nova iteração)
 	*/
 	int obtemVertice1()
->>>>>>> origin/master
 	{
 		return vertice1;
 	}
 
-<<<<<<< HEAD
-    /**
-	* Função para retornar o vertice 2
-	*/
-	int obterVertice2()
-=======
+
 	/**
 	* Obtem o segundo vertice (é apagado cada nova iteração)
 	*/
 	int obtemVertice2()
->>>>>>> origin/master
 	{
 		return vertice2;
 	}
 
-<<<<<<< HEAD
     /**
-	* Função para retornar o peso de cada
-=======
-	/**
 	* Obtem o peso da aresta que liga um vertice a outro
->>>>>>> origin/master
 	*/
 	int obterPeso()
 	{
@@ -70,11 +47,7 @@ public:
 	}
 
 	/**
-<<<<<<< HEAD
-	* Sobrescrita do operador "<" para ordenar "futuramente" da menor para a maior aresta
-=======
 	* Operação para sobrescrita do operador "<", que será sada para ordenar as arestas em ordem cescente
->>>>>>> origin/master
 	*/
 	bool operator < (const Aresta& aresta2) const
 	{
@@ -95,11 +68,7 @@ public:
 	}
 
 	/**
-<<<<<<< HEAD
-	* Função que adiciona uma aresta
-=======
 	* Função para adicionar arestas
->>>>>>> origin/master
 	*/
 	void adicionaAresta(int v1, int v2, int peso)
 	{
@@ -178,12 +147,8 @@ int main(int argc, char *argv[])
 {
 	Grafo g(7); // inicializa o grafo
 
-	// adiciona as arestas
-<<<<<<< HEAD
-	g.adicionaAresta(0, 1, 7);
-=======
+
 	g.adicionaAresta(0, 1, 7); // vertice 1, vertice 2, peso
->>>>>>> origin/master
 	g.adicionaAresta(0, 3, 5);
 	g.adicionaAresta(1, 2, 8);
 	g.adicionaAresta(1, 3, 9);
