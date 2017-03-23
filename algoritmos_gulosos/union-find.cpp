@@ -19,7 +19,7 @@ int busca(int subset[], int v)
 * Função para unir dois subconjuntos em um único conjunto
 * Usa a função busca para identificar os subconjuntos de cada vertice e em seguida os une
 */
-void unir(int subset[], int v1, int v2)
+void une(int subset[], int v1, int v2)
 {
 	int v1_set = busca(subset, v1);
 	int v2_set = busca(subset, v2);
@@ -48,7 +48,7 @@ int identificaCiclo(int grafo[3][3])
 				if(v1 == v2)
 					return 1;
 				else
-					unir(subset, v1, v2);
+					une(subset, v1, v2);
 			}
 		}
 	}

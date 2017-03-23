@@ -11,29 +11,43 @@ class Aresta
 
 public:
 
+    /**
+    * Monta a aresta com seus vertices e pesos de um determinado vertice a outro
+    */
 	Aresta(int v1, int v2, int peso)
 	{
-		vertice1 = v1;
+		vertice1 = v1; // pega "localmente"
 		vertice2 = v2;
 		this->peso = peso;
 	}
 
+	/**
+	* Função para retornar o vertice 1
+	*/
 	int obterVertice1()
 	{
 		return vertice1;
 	}
 
+    /**
+	* Função para retornar o vertice 2
+	*/
 	int obterVertice2()
 	{
 		return vertice2;
 	}
 
+    /**
+	* Função para retornar o peso de cada
+	*/
 	int obterPeso()
 	{
 		return peso;
 	}
 
-	// sobrescrita do operador "<"
+	/**
+	* Sobrescrita do operador "<" para ordenar "futuramente" da menor para a maior aresta
+	*/
 	bool operator < (const Aresta& aresta2) const
 	{
 		return (peso < aresta2.peso);
@@ -52,8 +66,10 @@ public:
 		this->V = V;
 	}
 
-	// função que adiciona uma aresta
-	void adicionarAresta(int v1, int v2, int peso)
+	/**
+	* Função que adiciona uma aresta
+	*/
+	void adicionaAresta(int v1, int v2, int peso)
 	{
 		Aresta aresta(v1, v2, peso);
 		arestas.push_back(aresta);
@@ -120,17 +136,17 @@ int main(int argc, char *argv[])
 	Grafo g(7); // grafo
 
 	// adiciona as arestas
-	g.adicionarAresta(0, 1, 7);
-	g.adicionarAresta(0, 3, 5);
-	g.adicionarAresta(1, 2, 8);
-	g.adicionarAresta(1, 3, 9);
-	g.adicionarAresta(1, 4, 7);
-	g.adicionarAresta(2, 4, 5);
-	g.adicionarAresta(3, 4, 15);
-	g.adicionarAresta(3, 5, 6);
-	g.adicionarAresta(4, 5, 8);
-	g.adicionarAresta(4, 6, 9);
-	g.adicionarAresta(5, 6, 11);
+	g.adicionaAresta(0, 1, 7);
+	g.adicionaAresta(0, 3, 5);
+	g.adicionaAresta(1, 2, 8);
+	g.adicionaAresta(1, 3, 9);
+	g.adicionaAresta(1, 4, 7);
+	g.adicionaAresta(2, 4, 5);
+	g.adicionaAresta(3, 4, 15);
+	g.adicionaAresta(3, 5, 6);
+	g.adicionaAresta(4, 5, 8);
+	g.adicionaAresta(4, 6, 9);
+	g.adicionaAresta(5, 6, 11);
 
 	g.kruskal(); // roda o algoritmo de Kruskal
 
