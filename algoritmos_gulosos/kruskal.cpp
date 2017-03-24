@@ -29,7 +29,6 @@ public:
 		return vertice1;
 	}
 
-
 	/**
 	* Obtem o segundo vertice (é apagado cada nova iteração)
 	*/
@@ -62,7 +61,7 @@ class Grafo
 
 public:
 
-	Grafo(int V)
+	 Grafo(int V)
 	{
 		this->V = V;
 	}
@@ -76,7 +75,7 @@ public:
 		arestas.push_back(aresta);
 	}
 
-    // inicio da plimentação do union-find
+    // inicio da implmentação do union-find
 
 	/**
 	* Função recursiva que busca o subconjunto de um determnado elemento "i" do grafo

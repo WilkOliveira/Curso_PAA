@@ -32,7 +32,7 @@ public:
 	}
 
 	/**
-	* Adiciona uma aresta ao grafo de v1 à v2, onde v1 e v2 representam os vertices
+	* Adiciona uma aresta ao sub-grafo de v1 à v2, onde v1 e v2 representam os vertices
 	*/
 	void adicionaAresta(int v1, int v2, int custo)
 	{
