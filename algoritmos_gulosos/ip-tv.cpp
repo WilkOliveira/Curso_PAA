@@ -1,3 +1,5 @@
+// UVA 1174 - https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=3615
+
 #include <iostream>
 #include <cstring>
 #include <climits>
