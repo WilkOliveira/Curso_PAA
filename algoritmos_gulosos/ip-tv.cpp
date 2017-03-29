@@ -1,6 +1,3 @@
-//1174
-//IP-TV
-//Graphs;Minimum Spanning Tree;Prim;Priority Queue
 #include <iostream>
 #include <cstring>
 #include <climits>
@@ -9,32 +6,39 @@
 #include <algorithm>
 #include <queue>
 #include <map>
+
 #define MAX 200100
 
 using namespace std;
 
+/**
+* Classe de arestas para representar as estradas
+*/
 struct Road {
     int v, c;
     Road(int v, int c) : v(v), c(c) {}
     inline bool operator < (const Road& that) const { return c > that.c; }
 };
 
-vector<Road> G[MAX];
-priority_queue<Road> Q;
-int n, m;
-bool V[MAX];
-map<string, int> M;
+    vector<Road> G[MAX]; // vertor de estradas
+    priority_queue<Road> Q; // define prioridades, para abertura das arestas
+    int n, m; // linhas existentes e cidades
+    bool V[MAX];
+    map<string, int> M; // conjunto de vertices para representar as cidades
 
-int city(string& s) {
-    if (M.find(s) != M.end())
-        return M[s];
-    else
-        return M[s]=M.size();
-
+    /**
+    * Função para varrer os vertices que representam as cidades
+    */
+    int city(string& s) {
+        if (M.find(s) != M.end())
+            return M[s];
+        else
+            return M[s]=M.size();
 }
 
 int main() {
-    int t; cin >> t; t=0;
+
+    int t; cin >> t; t=0; // casos de teste
 
     while(cin >> n >> m) {
         memset(V, 0, sizeof(V));
@@ -43,10 +47,10 @@ int main() {
         Q = priority_queue<Road>();
 
         for(int i=0; i<m; i++) {
-            string p, q; int a, b, c;
+            string p, q; int a, b, c; // nomes de cidades
             cin >> p >> q >> c;
             a = city(p); b=city(q);
-            G[a].push_back(Road(b, c));
+            G[a].push_back(Road(b, c)); // distância entre uma cidade e outra
             G[b].push_back(Road(a, c));
         }
 
@@ -54,7 +58,7 @@ int main() {
 
         Q.push(Road(1, 0));
 
-        while(totalc < n) {
+        while(totalc < n){
             Road item = Q.top(); Q.pop();
             if (V[item.v]) continue;
 
@@ -70,5 +74,6 @@ int main() {
         if (t++) cout << endl;
         cout << total << endl;
     }
+
     return 0;
 }

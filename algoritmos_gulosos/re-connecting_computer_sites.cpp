@@ -10,6 +10,9 @@ using namespace std;
 
 const int maxn = 1000100;
 
+/**
+* Classe que cria o conjunto de arestas
+*/
 class Aresta{
   public:
       int a;
@@ -19,12 +22,15 @@ class Aresta{
       Aresta(int aa, int bb, int tt) : a(aa), b(bb), t(tt) {}
 };
 
-  vector<Aresta> Elist;
-  int n,m,w1,k,w2;
-  int fa[maxn];
+    /**
+    * Vetor de arestas
+    */
+    vector<Aresta> Elist;
+    int n,m,w1,k,w2;
+    int fa[maxn];
 
-  bool cmp(const Aresta& R1, const Aresta& R2) { return (R1.t<R2.t); }
-  bool ok(Aresta R);
+    bool cmp(const Aresta& R1, const Aresta& R2) {return (R1.t<R2.t);}
+    bool ok(Aresta R);
 
 int main()
 {
@@ -32,7 +38,7 @@ int main()
 
     while (!cin.eof())
         {
-            cin >> n;
+            cin >> n; // número de sites
             if (cin.eof()) break;
             Elist.clear();
             ntest++;
@@ -56,6 +62,10 @@ int main()
                 }
 
             cin >> m;
+
+            /**
+            * Começa a implementar a arvore geradora minima
+            */
             for (int i=1; i<=m; i++)
                 {
                     cin >> x >> y >> value;
