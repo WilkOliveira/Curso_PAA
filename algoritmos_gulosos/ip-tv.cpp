@@ -16,22 +16,23 @@ using namespace std;
 /**
 * Classe de arestas para representar as estradas
 */
-struct Road {
-    int v, c;
-    Road(int v, int c) : v(v), c(c) {}
-    inline bool operator < (const Road& that) const { return c > that.c; }
+struct Estradas{
+    int v, c; // estradas
+
+    Estradas(int v, int c) : v(v), c(c) {}
+    inline bool operator < (const Estradas& that) const { return c > that.c; }
 };
 
-    vector<Road> G[MAX]; // vertor de estradas
-    priority_queue<Road> Q; // define prioridades, para abertura das arestas
+    vector<Estradas> G[MAX]; // vertor de estradas
+    priority_queue<Estradas> Q; // define prioridades, para abertura das arestas
     int n, m; // linhas existentes e cidades
     bool V[MAX];
     map<string, int> M; // conjunto de vertices para representar as cidades
 
     /**
-    * Função para varrer os vertices que representam as cidades
+    * Função para varrer os vertices que representam as cidades e retornar seu valor
     */
-    int city(string& s) {
+    int cidade(string& s){
         if (M.find(s) != M.end())
             return M[s];
         else
@@ -46,22 +47,30 @@ int main() {
         memset(V, 0, sizeof(V));
         memset(G, 0, sizeof(G));
         M.clear();
-        Q = priority_queue<Road>();
+        Q = priority_queue<Estradas>(); // definição de prioridade
 
+        /**
+        *
+        * O(m)
+        */
         for(int i=0; i<m; i++) {
             string p, q; int a, b, c; // nomes de cidades
             cin >> p >> q >> c;
-            a = city(p); b=city(q);
-            G[a].push_back(Road(b, c)); // distância entre uma cidade e outra
-            G[b].push_back(Road(a, c));
+            a = cidade(p); b=cidade(q);
+            G[a].push_back(Estradas(b, c)); // distância entre uma cidade e outra
+            G[b].push_back(Estradas(a, c));
         }
 
         int total = 0, totalc=0;
 
-        Q.push(Road(1, 0));
+        Q.push(Estradas(1, 0));
 
+        /**
+        * Implementa a arvore geradora minima para idenficar o cusoto minimo da transmissão para atingir todos os nós
+        * O(n log n)
+        */
         while(totalc < n){
-            Road item = Q.top(); Q.pop();
+            Estradas item = Q.top(); Q.pop();
             if (V[item.v]) continue;
 
             V[item.v] = true;

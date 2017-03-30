@@ -13,30 +13,33 @@ using namespace std;
 const int maxn = 1000100;
 
 /**
-* Classe que cria o conjunto de arestas
+* Classe que cria o conjunto de areasyas para representar as linhas de velocidade
 */
-class Aresta{
+class Linhas{
   public:
-      int a;
+      int a; // linha a
       int b;
       int t;
 
-      Aresta(int aa, int bb, int tt) : a(aa), b(bb), t(tt) {}
+      Linhas(int aa, int bb, int tt) : a(aa), b(bb), t(tt) {}
 };
 
     /**
-    * Vetor de arestas
+    * Vetor de arestas para representar as linhas
     */
-    vector<Aresta> Elist;
+    vector<Linhas> Elist;
     int n,m,w1,k,w2;
     int fa[maxn];
 
-    bool cmp(const Aresta& R1, const Aresta& R2) {return (R1.t<R2.t);}
-    bool ok(Aresta R);
+    /**
+    * Espandi da menor para a maior
+    */
+    bool cmp(const Linhas& R1, const Linhas& R2) {return (R1.t<R2.t);}
+    bool ok(Linhas R);
 
 int main()
 {
-    int ntest = 0;
+    int ntest = 0; // casos de teste
 
     while (!cin.eof())
         {
@@ -49,6 +52,10 @@ int main()
             w1 = 0;
             w2 = 0;
 
+            /**
+            * Percorre as arestas
+            * O(n+(n-1))
+            */
             for (int i=1; i<=n; i++) fa[i] = i;
                 for (int i=1; i<=n-1; i++)
                     {
@@ -57,26 +64,31 @@ int main()
                     }
             cin >> k;
 
+            /**
+            * Ordena a expande da maior para a menor
+            * O(k)
+            */
             for (int i=1; i<=k; i++)
                 {
                     cin >> x >> y >> value;
-                    Elist.push_back(Aresta(x,y,value));
+                    Elist.push_back(Linhas(x,y,value));
                 }
 
             cin >> m;
 
             /**
-            * Começa a implementar a arvore geradora minima
+            * Implementação da arvore geradora minima
+            * O(m log m)
             */
             for (int i=1; i<=m; i++)
                 {
                     cin >> x >> y >> value;
-                    Elist.push_back(Aresta(x,y,value));
+                    Elist.push_back(Linhas(x,y,value)); // vertice 1, vertice 2 e custo
                 }
 
             sort(Elist.begin(), Elist.end(), cmp);
 
-            for (vector<Aresta>::size_type i=0; i<Elist.size(); i++)
+            for (vector<Linhas>::size_type i=0; i<Elist.size(); i++)
                 if (ok(Elist[i]))
                 {
                     w2+=Elist[i].t;
@@ -91,14 +103,18 @@ int main()
       return 0;
 }
 
-bool ok(Aresta R){
+/**
+* Retorna o custo original e o novo custo
+*/
+bool ok(Linhas R){
     int a = R.a, b = R.b;
+
     while (a!=fa[a]) a = fa[a];
         while (b!=fa[b]) b = fa[b];
-        if (a==b) return(false);
-        else
-        {
-            a<b? fa[b] = a : fa[a] = b;
-            return(true);
-        }
+            if (a==b) return(false);
+            else
+            {
+                a<b? fa[b] = a : fa[a] = b;
+                return(true);
+            }
 }
