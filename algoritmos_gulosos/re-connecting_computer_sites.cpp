@@ -54,7 +54,7 @@ int main()
 
             /**
             * Percorre as arestas
-            * O(n+(n-1))
+            * O(n^2 - 1))
             */
             for (int i=1; i<=n; i++) fa[i] = i;
                 for (int i=1; i<=n-1; i++)

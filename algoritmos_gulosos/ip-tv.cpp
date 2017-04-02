@@ -67,7 +67,7 @@ int main() {
 
         /**
         * Implementa a arvore geradora minima para idenficar o cusoto minimo da transmissão para atingir todos os nós
-        * O(n log n)
+        * O(n^2 log n)
         */
         while(totalc < n){
             Estradas item = Q.top(); Q.pop();
