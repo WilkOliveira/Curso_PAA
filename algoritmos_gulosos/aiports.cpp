@@ -1,17 +1,22 @@
+// UVA 11733 - https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2833
+
 #include<cstdio>
 #include<cstring>
 #include<algorithm>
 
-#define maxn 100009
+#define maxn 100010
 
 using namespace std;
 
-int n,m,a;
+int n,m,a; // locais, estradas e custos
 
 struct edge{
 
 int u,v,w;
 
+    /**
+    * Trata da ordenação do Kruskal
+    */
     bool operator<(const edge& t)const{
         return w<t.w;
     }
@@ -19,14 +24,22 @@ int u,v,w;
 
 int f[10009],pen[10009],ans,cnt;
 
-int find(int x){
-    return x==f[x]?x:f[x]=find(f[x]);
+/**
+* Função recursiva que busca o subconjunto de um determnado elemento do grafo
+* O(x)
+*/
+int busca(int x){
+    return x==f[x]?x:f[x]=busca(f[x]);
 }
 
+/**
+* Implementação do algoritmo de Kruskal
+* O(E log V)
+*/
 bool kruskal(){
     for(int i=0;i<m;i++){
-         int x=find(ed[i].u);
-         int y=find(ed[i].v);
+         int x=busca(ed[i].u);
+         int y=busca(ed[i].v);
 
             if(x!=y){
                 f[x]=y;
@@ -34,13 +47,17 @@ bool kruskal(){
                 ans+=ed[i].w;
             }
      }
- }
+}
 
 int main(){
 
-    int ca=1,num,t;
+    int t; // casos de teste
+    int ca=1,num;
     scanf("%d",&t);
 
+    /**
+    * Lê os casos de teste
+    */
     while(t--){
         scanf("%d%d%d",&n,&m,&a);
         ans=num=cnt=0;
@@ -52,8 +69,11 @@ int main(){
 
             sort(ed,ed+m);
 
+            /**
+            * Chamada do Kruskal
+            */
             kruskal();
-                for(int i=1;i<=n;i++)if(i==find(i))num++;
+                for(int i=1;i<=n;i++)if(i==busca(i))num++;
                 for(int i=0;i<=cnt;i++)
                     if(pen[i]>=a){
                         num++;
@@ -61,7 +81,7 @@ int main(){
                     }
 
             ans+=num*a;
-            printf("Case #%d: %d %d\n",ca++,ans,num);
+            printf("Case #%d: %d %d\n",ca++,ans,num); // saída
      }
      return 0;
 }
