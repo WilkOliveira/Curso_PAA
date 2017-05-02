@@ -9,8 +9,8 @@ using namespace std;
 #define N 201
 
 bool ligacao[N][N]; // matriz de ligação de arestas
-int no[N], num_ligacoes; // para verificar número de de ligações
 int entrada[N], d[N];// guarda a maior profundidade, onde d é a profundidade de N
+int no[N], num_ligacoes; // para verificar número de de ligações
 
 vector<int> g[N];
 
@@ -21,7 +21,7 @@ void dfs(int u, int pai, int profundidade)
 {
     no[u] = 1;
     d[u] = entrada[u] = profundidade;
-    for(int i = 0; i < g[u].size(); i++ )
+    for(int i = 0; i < g[u].size(); i++)
     {
         int v = g[u][i];
         if(no[v] == 1 && v != pai)
@@ -49,11 +49,13 @@ int main()
     {
         memset(ligacao, false, sizeof(ligacao));
         num_ligacoes = 0;
+
         for(int i = 0; i < N; i++)
         {
             no[i] = 0;
             g[i].clear(); // limpa aqui
         }
+
         for(int i = 0; i < n; i++)
         {
             int a, b, c;
@@ -65,13 +67,17 @@ int main()
                 g[b].push_back(a);
             }
         }
+
         for(int i = 0; i < n; i++)
         {
             if(!no[i]) dfs(i, 0, 0);
         }
 
-        printf("%d critical links\n", num_ligacoes);
+        printf("%d critical links\n", num_ligacoes); // quantidade de ligações críticas
 
+        /**
+        * Loop para mostrar quais as ligações críticas
+        */
         for(int i = 0; i < n; i++)
         {
             for(int j = i + 1; j < n; j++)

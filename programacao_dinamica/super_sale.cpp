@@ -11,17 +11,17 @@ int V[MAX][MAX];
 /**
 * Implementação da mochila
 */
-int mochila(int v[], int w[], int n,int W)
+int mochila(int v[], int w[], int n, int max_compra)
 {
     int i,j; // fazer duas iterações
 
-    for(i=0; i<=W; i++)
+    for(i=0; i<=max_compra; i++)
     {
         V[0][i]=0;
     }
     for(i=1; i<=n; i++)
     {
-        for(j=0; j<=W; j++)
+        for(j=0; j<=max_compra; j++)
         {
             if(w[i]<=j)
             {
@@ -43,12 +43,12 @@ int mochila(int v[], int w[], int n,int W)
         }
     }
 
-    return V[n][W] ;
+    return V[n][max_compra] ;
 }
 
 int main()
 {
-    int v[MAX], w[MAX], W, cliente, solution, i, n, m, testes;
+    int testes, v[MAX], w[MAX], max_compra, cliente, i, n, m;
 
     scanf("%d",&testes); // lê casos de teste
     while(testes--)
@@ -60,15 +60,15 @@ int main()
         {
             scanf("%d %d",&v[i],&w[i]);
         }
-        W=0;
+        max_compra=0;
 
         scanf("%d",&cliente);
         for(i=1;i<=cliente;i++)
         {
             scanf("%d",&m);
-            W+=mochila(v,w,n,m);
+            max_compra+=mochila(v,w,n,m);
         }
 
-        cout << W << ""; //printf("%d\n",W);
+        printf("%d\n",max_compra);
     }
 }
