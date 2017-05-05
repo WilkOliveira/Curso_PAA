@@ -45,7 +45,7 @@ void dfs(int u, int pai, int profundidade)
 int main()
 {
     int n;
-    while(scanf("%d", &n))// leitura dos casos de teste
+    while (scanf("%d", &n) != EOF) // leitura dos casos de teste
     {
         memset(ligacao, false, sizeof(ligacao));
         num_ligacoes = 0;
