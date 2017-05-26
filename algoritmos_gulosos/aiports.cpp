@@ -1,14 +1,12 @@
-// UVA 11733 - https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2833
-
 #include<cstdio>
-#include<cstring>
 #include<algorithm>
+#include<cstring>
 
 #define maxn 100010
 
 using namespace std;
 
-int n,m,a; // locais, estradas e custos
+int m,n,a; // estradas, locais e custos
 
 /**
 * Definição da classe Grafo
@@ -17,15 +15,12 @@ struct Grafo{
 
 int u,v,w;
 
-    /**
-    * Trata da ordenação do Kruskal
-    */
-    bool operator<(const edge& t)const{
+    bool operator<(const Grafo& t)const{
         return w<t.w;
     }
-}ed[maxn];
+}arestas[maxn];
 
-int f[10009],pen[10009],ans,cnt;
+int f[10010],pen[10010],resp,contador;
 
 /**
 * Função recursiva que busca o subconjunto de um determnado elemento "x" do grafo
@@ -41,20 +36,19 @@ int busca(int x){
 */
 bool kruskal(){
     for(int i=0;i<m;i++){
-         int x=busca(ed[i].u);
-         int y=busca(ed[i].v);
+         int x=busca(arestas[i].u);
+         int y=busca(arestas[i].v);
 
             if(x!=y){
                 f[x]=y;
-                pen[cnt++]=ed[i].w;
-                ans+=ed[i].w;
+                pen[contador++]=arestas[i].w;
+                resp+=arestas[i].w;
             }
      }
-}
+ }
 
 int main(){
 
-<<<<<<< HEAD
     int ca=1,num,t;
     scanf("%d",&t); // leitura dos casos de teste
 
@@ -63,28 +57,29 @@ int main(){
     */
     while(t--){
         scanf("%d%d%d",&n,&m,&a);
-        ans=num=cnt=0;
+        resp=num=contador=0;
         memset(pen,0,sizeof pen);
 
         for(int i=1;i<=n;i++)f[i]=i;
             for(int i=0;i<m;i++)
-            scanf("%d%d%d",&ed[i].u,&ed[i].v,&ed[i].w);
+            scanf("%d%d%d",&arestas[i].u,&arestas[i].v,&arestas[i].w);
 
-            sort(ed,ed+m); // ordenação
+            sort(arestas,arestas+m); // ordenação
 
             /**
             * Chamada do Kruskal
             */
             kruskal();
                 for(int i=1;i<=n;i++)if(i==busca(i))num++;
-                for(int i=0;i<=cnt;i++)
+                for(int i=0;i<=contador;i++)
                     if(pen[i]>=a){
                         num++;
-                        ans-=pen[i];
+                        resp-=pen[i];
                     }
 
-            ans+=num*a;
-            printf("Case #%d: %d %d\n",ca++,ans,num); // saída
+            resp+=num*a;
+
+            printf("Case #%d: %d %d\n",ca++,resp,num); // saída
      }
      return 0;
 }
